@@ -9,11 +9,12 @@ const db = mysql.createPool({
   connectionLimit: 10,
 });
 
-db.connect((err) => {
+db.getConnection((err, connection) => {
   if (err) {
     console.error("DB connection failed:", err);
   } else {
     console.log("Connected to MySQL");
+    connection.release();
   }
 });
 
